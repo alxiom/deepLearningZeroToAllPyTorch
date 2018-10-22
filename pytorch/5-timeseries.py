@@ -1,6 +1,5 @@
 import torch
 import torch.optim as optim
-from torch.autograd import Variable
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -17,7 +16,7 @@ def build_dataset(time_series, seq_length):
     for i in range(0, len(time_series) - seq_length):
         _x = time_series[i:i + seq_length, :]
         _y = time_series[i + seq_length, [-1]]  # Next close price
-        # print(_x, "->", _y)
+        print(_x, "->", _y)
         dataX.append(_x)
         dataY.append(_y)
     return np.array(dataX), np.array(dataY)
@@ -43,11 +42,11 @@ test_set = minmax_scaler(test_set)
 trainX, trainY = build_dataset(train_set, seq_length)
 testX, testY = build_dataset(test_set, seq_length)
 
-trainX_tensor = Variable(torch.Tensor(trainX).float())
-trainY_tensor = Variable(torch.Tensor(trainY).float())
+trainX_tensor = torch.Tensor(trainX).float()
+trainY_tensor = torch.Tensor(trainY).float()
 
-testX_tensor = Variable(torch.Tensor(testX).float())
-testY_tensor = Variable(torch.Tensor(testY).float())
+testX_tensor = torch.Tensor(testX).float()
+testY_tensor = torch.Tensor(testY).float()
 
 
 class Net(torch.nn.Module):
@@ -58,8 +57,6 @@ class Net(torch.nn.Module):
 
     def forward(self, x):
         x, _status = self.rnn(x)
-        # print(x.size())
-        # print(x[:, -1].size())
         x = self.fc(x[:, -1])
         return x
 
@@ -77,7 +74,7 @@ for i in range(iterations):
     loss = criterion(outputs, trainY_tensor)
     loss.backward()
     optimizer.step()
-    print(i, loss.data.numpy())
+    print(i, loss.item())
 
 plt.plot(testY)
 plt.plot(net(testX_tensor).data.numpy())

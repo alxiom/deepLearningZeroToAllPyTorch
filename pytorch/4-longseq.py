@@ -1,6 +1,5 @@
 import torch
 import torch.optim as optim
-from torch.autograd import Variable
 import numpy as np
 
 sentence = ("if you want to build a ship, don't drum up people together to "
@@ -32,8 +31,8 @@ for i in range(0, len(sentence) - sequence_length):
 x_one_hot = [np.eye(dic_size)[x] for x in x_data]
 
 # transform as torch tensor variable
-X = Variable(torch.Tensor(x_one_hot).float())
-Y = Variable(torch.Tensor(y_data).long())
+X = torch.Tensor(x_one_hot).float()
+Y = torch.Tensor(y_data).long()
 
 
 # declare RNN + FC
@@ -68,7 +67,7 @@ for i in range(100):
     results = outputs.data.numpy().argmax(axis=2)
     predict_str = ""
     for j, result in enumerate(results):
-        print(i, j, ''.join([char_set[t] for t in result]), loss.data.numpy())
+        print(i, j, ''.join([char_set[t] for t in result]), loss.item())
         if j == 0:
             predict_str += ''.join([char_set[t] for t in result])
         else:
