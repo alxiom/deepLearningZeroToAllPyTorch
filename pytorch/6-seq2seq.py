@@ -8,15 +8,6 @@ from torch import optim
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-sources = ["I feel hungry.",
-           "Pytorch is very easy.",
-           "Pytorch is a framework for deep learning.",
-           "Pytorch is very clear to use."]
-targets = ["나는 배가 고프다.",
-           "파이토치는 매우 쉽다.",
-           "파이토치는 딥러닝을 위한 프레임워크이다.",
-           "파이토치는 사용하기 매우 직관적이다."]
-
 SOS_token = 0
 EOS_token = 1
 
