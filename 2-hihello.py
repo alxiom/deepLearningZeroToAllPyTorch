@@ -2,7 +2,7 @@ import torch
 import torch.optim as optim
 import numpy as np
 
-torch.manual_seed(0)
+torch.manual_seed(42)
 
 char_set = ['h', 'i', 'e', 'l', 'o']
 

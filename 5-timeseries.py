@@ -3,7 +3,7 @@ import torch.optim as optim
 import numpy as np
 import matplotlib.pyplot as plt
 
-torch.manual_seed(0)
+torch.manual_seed(42)
 
 
 def minmax_scaler(data):
