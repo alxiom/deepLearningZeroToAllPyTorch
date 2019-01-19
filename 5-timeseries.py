@@ -80,4 +80,5 @@ for i in range(iterations):
 
 plt.plot(testY)
 plt.plot(net(testX_tensor).data.numpy())
+plt.legend(["original", "prediction"])
 plt.show()
