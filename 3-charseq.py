@@ -2,6 +2,8 @@ import torch
 import torch.optim as optim
 import numpy as np
 
+torch.manual_seed(0)
+
 sample = " if you want you"
 
 # make dictionary

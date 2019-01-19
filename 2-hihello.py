@@ -2,6 +2,8 @@ import torch
 import torch.optim as optim
 import numpy as np
 
+torch.manual_seed(0)
+
 char_set = ['h', 'i', 'e', 'l', 'o']
 
 # hyper parameters

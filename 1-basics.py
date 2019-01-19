@@ -1,6 +1,8 @@
 import torch
 import numpy as np
 
+torch.manual_seed(0)
+
 # declare dimension
 input_size = 4
 hidden_size = 2
